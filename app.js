@@ -3,29 +3,18 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const ejs = require("ejs");
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 const app = express();
 
 app.use(express.static("public"));
 app.set('view engine' , 'ejs');
 app.use(bodyParser.urlencoded({extended:true}));
 
-mongoose.connect("mongodb+srv://admin-shivansh:shiv**2406@cluster0-zpipx.mongodb.net/officeDB" , {useNewUrlParser: true , useUnifiedTopology: true});
+mongoose.connect("mongodb://localhost:27017/todolistDB" ,{useNewUrlParser: true , useUnifiedTopology: true});
 
 const officeSchema = new mongoose.Schema({
 
     name : String,
-    phone : Number,
-    department : String,
-    email: {
-        type: String,
-        validate: {
-          validator: function(value) {
-            return value === 'correct@example.com';
-          },
-          message: 'Invalid email.',
-        },
-      },
     password : String
 
   });
@@ -63,9 +52,8 @@ app.post("/page2" , function(req ,res){
     }); 
 });
 
-var server = app.listen(process.env.PORT || 3000, function () {
-    var port = server.address().port;
-    console.log("Express is working on port " + port);
-  });
+app.listen(3000 , function () {
+    console.log("App started on server 3000");
+});
   
   
