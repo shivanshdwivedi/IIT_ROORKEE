@@ -14,6 +14,27 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
 
+mongoose.connect("mongodb+srv://admin-shivansh:shiv**2406@cluster0-zpipx.mongodb.net/officedb" , {useNewUrlParser: true , useUnifiedTopology: true});
+
+const officeSchema = new mongoose.Schema({
+
+    name : String,
+    phone : Number,
+    department : String,
+    email: {
+        type: String,
+        validate: {
+          validator: function(value) {
+            return value === 'correct@example.com';
+          },
+          message: 'Invalid email.',
+        },
+      },
+    password : String
+
+  });
+  
+  const employee = mongoose.model("employee" , officeSchema);
 
 app.get("/", function(req, res){
     res.render("page 1");
