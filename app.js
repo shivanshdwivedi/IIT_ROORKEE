@@ -4,13 +4,22 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const ejs = require("ejs");
 const mongoose = require('mongoose');
+const nodemailer = require("nodemailer");
 const app = express();
 
 app.use(express.static("public"));
 app.set('view engine' , 'ejs');
 app.use(bodyParser.urlencoded({extended:true}));
 
-mongoose.connect("mongodb://localhost:27017/todolistDB" ,{useNewUrlParser: true , useUnifiedTopology: true});
+mongoose.connect("mongodb://localhost:27017/officeDb" ,{useNewUrlParser: true , useUnifiedTopology: true});
+
+var transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: 'shivdwi043@gmail.com',
+      pass: 'drishtis.agarwal@gmail.com'
+    }
+  });
 
 const officeSchema = new mongoose.Schema({
 
@@ -37,6 +46,11 @@ app.get("/page4" , function(req,res){
     res.render("page4");
 });
 
+app.get("/page5" , function(req,res){
+    res.render("page5");
+});
+
+
 app.post("/page2" , function(req ,res){
     const newEmployee = new Employee({
         name : req.body.name,
@@ -52,8 +66,27 @@ app.post("/page2" , function(req ,res){
     }); 
 });
 
+app.post('/page4' , function(req,res){
+
+    var mailOptions = {
+        from: 'drishtis.agarwal@gmail.com ',
+        to: 'shivdwi043@gmail.com',
+        subject: 'Mail',
+        text: req.body.a1
+      };
+      
+      transporter.sendMail(mailOptions, function(error, info){
+        if (error) {
+          console.log(error);
+        } else {
+          console.log('Email sent: ' + info.response);
+        }
+      });
+
+      res.redirect('/page5');
+});
+
 app.listen(3000 , function () {
     console.log("App started on server 3000");
 });
-  
-  
+
