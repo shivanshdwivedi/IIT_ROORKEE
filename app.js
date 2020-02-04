@@ -65,6 +65,7 @@ app.post("/page2" , function(req ,res){
             res.render("page3");
         }
     }); 
+    console.log(Employee.name);
 });
 
 // app.post('/page4' , function(req,res){
