@@ -11,15 +11,15 @@ app.use(express.static("public"));
 app.set('view engine' , 'ejs');
 app.use(bodyParser.urlencoded({extended:true}));
 
-mongoose.connect("mongodb://localhost:27017/officeDb" ,{useNewUrlParser: true , useUnifiedTopology: true});
+mongoose.connect("mongodb+srv://admin-shivansh:shiv**2406@cluster0-zpipx.mongodb.net/officedb" ,{useNewUrlParser: true , useUnifiedTopology: true});
 
-var transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-      user: 'shivdwi043@gmail.com',
-      pass: 'drishtis.agarwal@gmail.com'
-    }
-  });
+// var transporter = nodemailer.createTransport({
+//     service: 'gmail',
+//     auth: {
+//       user: 'shivdwi043@gmail.com',
+//       pass: 'drishtis.agarwal@gmail.com'
+//     }
+//   });
 
 const officeSchema = new mongoose.Schema({
 
@@ -51,40 +51,40 @@ app.get("/page5" , function(req,res){
 });
 
 
-app.post("/page2" , function(req ,res){
-    const newEmployee = new Employee({
-        name : req.body.name,
-        phone : req.body.phone,
-        department : req.body.department,
-        email : req.body.email,
-        password : req.body.password
-    });
-    newEmployee.save(function(err){
-        if(!err){
-            res.render("page3");
-        }
-    }); 
-});
+// app.post("/page2" , function(req ,res){
+//     const newEmployee = new Employee({
+//         name : req.body.name,
+//         phone : req.body.phone,
+//         department : req.body.department,
+//         email : req.body.email,
+//         password : req.body.password
+//     });
+//     newEmployee.save(function(err){
+//         if(!err){
+//             res.render("page3");
+//         }
+//     }); 
+// });
 
-app.post('/page4' , function(req,res){
+// app.post('/page4' , function(req,res){
 
-    var mailOptions = {
-        from: 'drishtis.agarwal@gmail.com ',
-        to: 'shivdwi043@gmail.com',
-        subject: 'Mail',
-        text: req.body.a1
-      };
+    // var mailOptions = {
+    //     from: 'drishtis.agarwal@gmail.com ',
+    //     to: 'shivdwi043@gmail.com',
+    //     subject: 'Mail',
+    //     text: req.body.a1
+    //   };
       
-      transporter.sendMail(mailOptions, function(error, info){
-        if (error) {
-          console.log(error);
-        } else {
-          console.log('Email sent: ' + info.response);
-        }
-      });
+//       transporter.sendMail(mailOptions, function(error, info){
+//         if (error) {
+//           console.log(error);
+//         } else {
+//           console.log('Email sent: ' + info.response);
+//         }
+//       });
 
-      res.redirect('/page5');
-});
+//       res.redirect('/page5');
+// });
 
 app.listen(3000 , function () {
     console.log("App started on server 3000");
