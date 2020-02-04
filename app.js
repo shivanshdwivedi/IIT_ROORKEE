@@ -53,19 +53,19 @@ app.get("/page5" , function(req,res){
 
 
 app.post("/page2" , function(req ,res){
-    const Employee = new employee({
-        name : req.body.name,
-        phone : req.body.phone,
-        department : req.body.department,
-        email : req.body.email,
-        password : req.body.password
-    });
-    Employee.save(function(err){
-        if(!err){
-            res.render("page3");
-        }
-    }); 
-    console.log(Employee.name);
+    //const Employee = new employee({
+        name = req.body.name,
+        // phone : req.body.phone,
+        // department : req.body.department,
+        // email : req.body.email,
+        // password : req.body.password
+    //});
+    // Employee.save(function(err){
+    //     if(!err){
+    //         res.render("page3");
+    //     }
+    // }); 
+    console.log(name);
 });
 
 // app.post('/page4' , function(req,res){
