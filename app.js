@@ -3,15 +3,16 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const ejs = require("ejs");
-const mongoose = require('mongoose');
-const nodemailer = require("nodemailer");
+const mongoose = require("mongoose");
+const _ = require("lodash");
+
 const app = express();
 
-app.use(express.static("public"));
-app.set('view engine' , 'ejs');
-app.use(bodyParser.urlencoded({extended:true}));
+app.set('view engine', 'ejs');
 
-mongoose.connect("mongodb+srv://admin-shivansh:shiv**2406@cluster0-zpipx.mongodb.net/officedb" ,{useNewUrlParser: true , useUnifiedTopology: true});
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(express.static("public"));
+mongoose.connect("mongodb://localhost:27017/officedb" ,{useNewUrlParser: true , useUnifiedTopology: true});
 
 // var transporter = nodemailer.createTransport({
 //     service: 'gmail',
@@ -26,9 +27,9 @@ const officeSchema = new mongoose.Schema({
     name : String,
     password : String
 
-  });
+   });
   
-  const Employee = mongoose.model("Employee" , officeSchema);
+  const employee = mongoose.model("employee" , officeSchema);
 
 app.get("/", function(req, res){
     res.render("page 1");
@@ -51,20 +52,20 @@ app.get("/page5" , function(req,res){
 });
 
 
-// app.post("/page2" , function(req ,res){
-//     const newEmployee = new Employee({
-//         name : req.body.name,
-//         phone : req.body.phone,
-//         department : req.body.department,
-//         email : req.body.email,
-//         password : req.body.password
-//     });
-//     newEmployee.save(function(err){
-//         if(!err){
-//             res.render("page3");
-//         }
-//     }); 
-// });
+app.post("/page2" , function(req ,res){
+    const Employee = new employee({
+        name : req.body.name,
+        phone : req.body.phone,
+        department : req.body.department,
+        email : req.body.email,
+        password : req.body.password
+    });
+    Employee.save(function(err){
+        if(!err){
+            res.render("page3");
+        }
+    }); 
+});
 
 // app.post('/page4' , function(req,res){
 
