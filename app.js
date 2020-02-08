@@ -53,9 +53,9 @@ app.get("/page3" , function(req,res){
     res.render("page3");
 });
 
-app.get("/page4" , function(req,res){
-    res.render("page4");
-});
+// app.get("/page4" , function(req,res){
+//     res.render("page4");
+// });
 
 app.get("/page5" , function(req,res){
     res.render("page5");
@@ -72,7 +72,7 @@ app.get("/page5" , function(req,res){
     });
     Employee.save(function(err){
         if(!err){
-            res.render("page3");
+            res.render('page4');
         }
     }); 
 
@@ -94,7 +94,7 @@ app.get("/page5" , function(req,res){
         }else{
             if(foundEmployee){
                 if(foundEmployee.password === password){
-                    res.render("page4");
+                    res.render('page4');
                 }
             }
         }
