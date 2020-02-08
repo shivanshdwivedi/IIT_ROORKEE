@@ -88,18 +88,18 @@ app.get("/page5" , function(req,res){
     const username = req.body.username;
     const password =  md5(req.body.password);
 
-    employee.findOne({name : username} , function(err , foundemployee){
+    employee.findOne({name : username} , function(err , foundEmployee){
         if(err){
             console.log(err);
         }else{
-            if(foundemployee){
-                if(foundemployee.password === password){
-                    res.render("/page4");
+            if(foundEmployee){
+                if(foundEmployee.password === password){
+                    res.render("page4");
                 }
             }
         }
     });
- })
+ });
 
 
 
@@ -151,11 +151,6 @@ app.get("/page5" , function(req,res){
 
     console.log(req.body.a1);
  });
-
-
-
-
-
 app.listen(3000 , function () {
     console.log("App started on server 3000");
 });
