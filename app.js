@@ -1,11 +1,12 @@
 //jshint esversion:6
-
+require('dotenv').config();
 const express = require("express");
 const bodyParser = require("body-parser");
 const ejs = require("ejs");
 const mongoose = require("mongoose");
 const _ = require("lodash");
 const nodemailer = require('nodemailer');
+const md5 = require('md5');
 
 
 const app = express();
@@ -67,7 +68,7 @@ app.get("/page5" , function(req,res){
         phone : req.body.phone,
         department : req.body.department,
         email : req.body.email,
-        password : req.body.password
+        password : md5(req.body.password)
     });
     Employee.save(function(err){
         if(!err){
