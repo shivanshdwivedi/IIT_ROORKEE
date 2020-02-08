@@ -64,7 +64,7 @@ app.get("/page5" , function(req,res){
 
  app.post("/page2" , function(req ,res){
     const Employee = new employee({
-        name : req.body.username,
+        username : req.body.username,
         phone : req.body.phone,
         department : req.body.department,
         email : req.body.email,
