@@ -7,12 +7,10 @@ const mongoose = require("mongoose");
 const _ = require("lodash");
 const nodemailer = require('nodemailer');
 const md5 = require('md5');
-
-
 const app = express();
 
-app.set('view engine', 'ejs');
 
+app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
 mongoose.connect("mongodb://localhost:27017/officedb" ,{useNewUrlParser: true , useUnifiedTopology: true});
@@ -88,10 +86,12 @@ app.get("/page5" , function(req,res){
     const username = req.body.username;
     const password =  md5(req.body.password);
 
-    employee.findOne({name : username} , function(err , foundEmployee){
+    employee.findOne({username : username} , function(err , foundEmployee){
         if(err){
             console.log(err);
-        }else{
+        }
+        else
+        {
             if(foundEmployee){
                 if(foundEmployee.password === password){
                     res.render('page4');
