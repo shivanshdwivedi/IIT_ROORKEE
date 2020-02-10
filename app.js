@@ -28,11 +28,11 @@ console.log('created');
 
 const officeSchema = new mongoose.Schema({
 
-    username : String,
-    phone : Number,
-    department : String,
-    email :String ,
-    password : String
+    Name : String,
+    Phone : Number,
+    Department : String,
+    Email :String ,
+    Password : String
 
    });
   
