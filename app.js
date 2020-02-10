@@ -4,7 +4,6 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const ejs = require("ejs");
 const mongoose = require("mongoose");
-const _ = require("lodash");
 const nodemailer = require('nodemailer');
 const md5 = require('md5');
 const app = express();
@@ -62,11 +61,11 @@ app.get("/page5" , function(req,res){
 
  app.post("/page2" , function(req ,res){
     const Employee = new employee({
-        username : req.body.username,
-        phone : req.body.phone,
-        department : req.body.department,
-        email : req.body.email,
-        password : md5(req.body.password)
+        Name : req.body.username,
+        Phone : req.body.phone,
+        Department : req.body.department,
+        Email : req.body.email,
+        Password : md5(req.body.password)
     });
     Employee.save(function(err){
         if(!err){
@@ -82,28 +81,32 @@ app.get("/page5" , function(req,res){
 
  });
 
- app.post('/page3' , function(req,res){
-    const username = req.body.username;
+ app.post("/page3" , (req,res) => {
+    const name = req.body.username;
     const password =  md5(req.body.password);
 
-    employee.findOne({username : username} , function(err , foundEmployee){
-        if(err){
-            console.log(err);
-        }
-        else
-        {
-            if(foundEmployee){
-                if(foundEmployee.password === password){
-                    res.render('page4');
-                }
-            }
-        }
-    });
+    console.log(name);
+    console.log(password);
+
+    // employee.findOne({username : name} , function(err , foundEmployee){
+    //     if(err){
+    //         console.log(err);
+    //     }
+    //     else
+    //     {
+    //         if(foundEmployee){
+    //             // if(foundEmployee.password === password){
+    //             //     res.render('page4');
+    //           //  }
+    //         //   console.log("Found");
+    //         }
+    //     }
+    // });
  });
 
 
 
- app.post('/page4' , (req,res) => {
+ app.post("/page4" , (req,res) => {
 
     // console.log(req.body.a1);
 
