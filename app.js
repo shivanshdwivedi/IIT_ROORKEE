@@ -58,6 +58,10 @@ app.get("/page5" , function(req,res){
     res.render("page5");
 });
 
+app.get("/index" , function(req,res){
+    res.render("index");
+});
+
 
  app.post("/page2" , function(req ,res){
     const Employee = new employee({
@@ -69,7 +73,7 @@ app.get("/page5" , function(req,res){
     });
     Employee.save(function(err){
         if(!err){
-            res.render('page4');
+            res.render('index');
         }
     }); 
 
@@ -103,8 +107,6 @@ app.get("/page5" , function(req,res){
     //     }
     // });
  });
-
-
 
  app.post("/page4" , (req,res) => {
 
@@ -154,6 +156,8 @@ app.get("/page5" , function(req,res){
 
     console.log(req.body.a1);
  });
+
+
 app.listen(3000 , function () {
     console.log("App started on server 3000");
 });
