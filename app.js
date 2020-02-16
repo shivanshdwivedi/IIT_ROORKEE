@@ -110,7 +110,7 @@ app.get("/index" , function(req,res){
 
  app.post("/page4" , (req,res) => {
 
-    // console.log(req.body.a1);
+    console.log(req.body);
 
 
     // transporter.sendMail({
